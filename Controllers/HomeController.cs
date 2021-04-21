@@ -40,7 +40,7 @@ namespace AzureCalc.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Calculate(Service sv)
+        public IActionResult Confirm(Service sv)
         {
             double Price = sv.PricePerHour * sv.Quantity;
  
@@ -53,8 +53,12 @@ namespace AzureCalc.Controllers
                 Price *= 365 * 24;
             }
 
-            ViewBag.Charge = "Price for current year is $" + Price.ToString("0.00");
-            sv.InstanceList = services;
+            // This line uses the returned value from the Calculate view to find the text name of the service
+            // in the services list of SelectListItems. The name is then given to the model as Instance.
+
+            sv.Instance = services.Find(s => s.Value == sv.PricePerHour.ToString("0.00")).Text;
+
+            ViewBag.YearPrice = "$" + Price.ToString("0.00");
             return View(sv);
         }
 

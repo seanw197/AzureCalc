@@ -1,0 +1,38 @@
+﻿@model AzureCalc.Models.Service
+
+@{
+    ViewData["Title"] = "Confirm";
+}
+
+<h1>Calculated Price for Selected Service</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Instance)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Instance)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt class = "col-sm-2">
+           @* @Html.DisplayNameFor(model => model.PricePerHour)*@
+            Price for @DateTime.Now.Year
+        </dt>
+        <dd class = "col-sm-10">
+            @*@Html.DisplayFor(model => model.PricePerHour)*@
+            @ViewBag.YearPrice
+        </dd>
+    </dl>
+</div>
+<div>
+   @* @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |*@
+    <a asp-action="Calculate">Back to Calculator</a>
+</div>
